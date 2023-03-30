@@ -95,7 +95,7 @@ public class RequestHeaderServlet extends HttpServlet {
                 request.getRemotePort()); //
         System.out.println();
 
-        
+
         System.out.println("[Local 정보]");
         System.out.println("request.getLocalName() = " +
                 request.getLocalName()); //
