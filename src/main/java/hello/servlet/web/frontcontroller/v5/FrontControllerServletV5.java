@@ -27,8 +27,8 @@ import java.util.Map;
 @WebServlet(name="frontControllerServletV5", urlPatterns = "/front-controller/v5/*")
 public class FrontControllerServletV5 extends HttpServlet
 {
-    private final Map<String, Object> handlerMappingMap = new HashMap<>();
-    private final List<MyHandlerAdapter> handlerAdapters = new ArrayList<>();
+    private final Map<String, Object> handlerMappingMap = new HashMap<>(); // ControllerV3이든 V4든 다 지원하기 위해 Object로 받음 !
+    private final List<MyHandlerAdapter> handlerAdapters = new ArrayList<>(); // 어댑터가 여러 개 담겨있고 그 중 하나를 찾아 꺼내 써야하니까 리스트 하나 만듦 !
 
     public FrontControllerServletV5() {
         initHandlerMappingMap();
@@ -69,7 +69,7 @@ public class FrontControllerServletV5 extends HttpServlet
         view.render(mv.getModel(), request, response); // view의 render 호출해서 모델 넘겨줌
     }
 
-    private Object getHandler(HttpServletRequest request) {
+    private Object getHandler(HttpServletRequest request) { // 매핑 정보를 가지고 핸들러 매핑을 찾는 것
         String requestURI = request.getRequestURI();
         return handlerMappingMap.get(requestURI);// 인터페이스로 꺼내게 되면 이 코드를 일관성 있게 사용할 수 있다
     }
